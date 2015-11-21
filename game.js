@@ -48,7 +48,7 @@ function Fish() {
 
     this.frame = 0;
     this.velocity = 0;
-    this.animation = [0, 1, 2, 1]; // The animation sequence
+    this.animation = [0, 1, 2, 3, 4, 3, 2, 1 ]; // The animation sequence
 
     this.rotation = 0;
     this.radius = 12;
@@ -68,9 +68,9 @@ function Fish() {
      */
     this.update = function () {
         // Play animation twice as fast during game state
-        var n = currentState === states.Splash ? 10 : 5;
+        var n = currentState === states.Splash ? 6: 4;
 
-        this.frame += frames % n === 0 ? 1 : 0;
+        this.frame += frames % n === 0 ? 1: 0;
         this.frame %= this.animation.length;
 
         if (currentState === states.Splash) {
@@ -167,7 +167,7 @@ function onpress(evt) {
                 mouseX = evt.touches[0].clientX;
                 mouseY = evt.touches[0].clientY;
             }
-            if (clickX ===32 ) {
+            if (clickX ===55) {
                 clickX= evt.touches[0].clientX;
 
             }

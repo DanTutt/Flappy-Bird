@@ -25,7 +25,8 @@ canvas {
     right: 0;
     border-radius: 5px;
 }
-#titlesign{ width: 350px; height: 276px; background-image: url(images/CapDanTitle.png); position: relative; left: -50%; top: 25px;}
+#titlesign{ background-image: url("images/title.png");
+background-position: left;}
 #container{position: absolute; left: 50%; z-index: 999;}
 #container2{position: absolute; left: 50%;}
 #backgrondwaves{ width: 813px; height: 468px; background-image:url(images/gameScene.png); position: relative; left: -49%; top: 250px;}

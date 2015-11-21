@@ -47,21 +47,23 @@ Sprite.prototype.draw = function (renderingContext, x, y) {
 function initSprites(img) {
 
     fishSprite = [
-        new Sprite(img, 176, 115, 42, 28),
-        new Sprite(img, 176, 144, 42, 28),
-        new Sprite(img, 176, 172, 42, 28)
+        new Sprite(img, 174, 91, 46, 20),
+        new Sprite(img, 174, 110, 46, 25),
+        new Sprite(img, 174, 133, 46, 33),
+        new Sprite(img, 174, 168, 46, 33),
+        new Sprite(img, 174, 205, 46, 35)
     ];
 
     backgroundSprite = new Sprite(img, 0, 0, 420, 110);
     backgroundSprite.color = "aqua"; // save background color
-    foregroundSprite = new Sprite(img, 0, 235, 760, 38);
+    foregroundSprite = new Sprite(img, 0, 242, 760, 38);
 
     topCoralSprite = new Sprite(img, 251, 0, 26, 200);
     bottomCoralSprite = new Sprite(img, 277, 0, 26, 200);
 
     textSprites = {
         floppyFish: new Sprite(img, 59, 114, 96, 22),
-        gameOver: new Sprite(img, 59, 136, 94, 19),
+        textspriteOver: new Sprite(img, 59, 136, 94, 19),
         getReady: new Sprite(img, 59, 155, 87, 22)
     };
 
