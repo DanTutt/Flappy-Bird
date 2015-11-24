@@ -5,6 +5,7 @@ var
     foregroundSprite,
     topCoralSprite,
     bottomCoralSprite,
+    shark,
     textSprites,
     scoreSprite,
     splashScreenSprite,
@@ -56,10 +57,11 @@ function initSprites(img) {
 
     backgroundSprite = new Sprite(img, 0, 0, 420, 110);
     backgroundSprite.color = "aqua"; // save background color
-    foregroundSprite = new Sprite(img, 0, 242, 760, 38);
+    foregroundSprite = new Sprite(img, 0, 242, 760, 35);
 
-    topCoralSprite = new Sprite(img, 251, 0, 26, 200);
-    bottomCoralSprite = new Sprite(img, 277, 0, 26, 200);
+    topCoralSprite = new Sprite(img, 220, 140, 115, 300);
+    bottomCoralSprite = new Sprite(img, 220, 91, 115, 300);
+    sharkSprite = new Sprite(img, 231, 124, 70, 40);  //3 sharks (img, 231, 124, 70, 104);
 
     textSprites = {
         floppyFish: new Sprite(img, 59, 114, 96, 22),
@@ -72,4 +74,8 @@ function initSprites(img) {
     scoreSprite = new Sprite(img, 138, 56, 113, 58);
     splashScreenSprite = new Sprite(img, 0, 114, 59, 49);
 
+}
+
+function resetGame() {
+    document.getElementById("container2").reset();
 }

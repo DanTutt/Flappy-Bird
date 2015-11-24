@@ -25,9 +25,29 @@ canvas {
     right: 0;
     border-radius: 5px;
 }
-#titlesign{ background-image: url("images/title.png");
-background-position: left;}
-#container{position: absolute; left: 50%; z-index: 999;}
-#container2{position: absolute; left: 50%;}
-#backgrondwaves{ width: 813px; height: 468px; background-image:url(images/gameScene.png); position: relative; left: -49%; top: 250px;}
+#titlesign {
+    width: 480px;
+    height: 190px;
+    background-image: url(images/title.png);
+    position: relative;
+    left: -50%;
+    top: 65px;
+}
+#container {
+    position: absolute;
+    left: 50%;
+    z-index: 999;
+}
+#container2 {
+    position: absolute;
+    left: 50%;
+}
+#backgrondwaves {
+    width: 813px;
+    height: 468px;
+    background-image:url(images/gameScene.png);
+    position: relative;
+    left: -49%;
+    top: 250px;
+}
     
