@@ -18,20 +18,20 @@ canvas {
     display: block;
     position: absolute;
     margin: auto;
-    margin-top: 250px;
+    margin-top: 220px;
     top: 0;
     bottom: 0;
     left: 0;
     right: 0;
-    border-radius: 5px;
+    border-radius: 150px;
 }
 #titlesign {
-    width: 480px;
-    height: 190px;
-    background-image: url(images/title.png);
-    position: relative;
-    left: -50%;
-    top: 65px;
+    width: 800px;
+    height: 600px;
+    background-image: url(images/teethborder.png);
+    position: absolute;
+    left: -400px;
+    top: 110px;
 }
 #container {
     position: absolute;
@@ -40,14 +40,21 @@ canvas {
 }
 #container2 {
     position: absolute;
-    left: 50%;
+    margin: auto;
+    margin-top: 500px;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
 }
-#backgrondwaves {
-    width: 813px;
-    height: 468px;
-    background-image:url(images/gameScene.png);
-    position: relative;
-    left: -49%;
-    top: 250px;
+#myscore {
+    position: absolute;
+    left: 2%;
+    top: 68%;
+    color: red;
+    padding: 10px;
+    font-family: fantasy;
+    font-size: x-large;
+
 }
     

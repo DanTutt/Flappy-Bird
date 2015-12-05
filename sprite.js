@@ -65,8 +65,9 @@ function initSprites(img) {
 
     textSprites = {
         floppyFish: new Sprite(img, 59, 114, 96, 22),
-        textspriteOver: new Sprite(img, 59, 136, 94, 19),
-        getReady: new Sprite(img, 59, 155, 87, 22)
+        textspriteOver: new Sprite(img, 59, 136, 94, 23),
+        getReady: new Sprite(img, 39, 158, 135, 20),
+        replay: new Sprite(img, 220, 210, 180, 20),
     };
 
     okButtonSprite = new Sprite(img, 119, 191, 40, 14);
@@ -76,6 +77,3 @@ function initSprites(img) {
 
 }
 
-function resetGame() {
-    document.getElementById("container2").reset();
-}

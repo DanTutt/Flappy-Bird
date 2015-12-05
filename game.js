@@ -22,13 +22,17 @@ var
     foregroundPosition = 0,
     backgroundPosition = 0,
     frames = 0, // Counts the number of frames rendered.
+    score = 0,
+    currentScore = score,
 
 // The playable fish character
     fish,
     corals,
 
+
 // State vars
     currentState,
+    splashscreen,
 
 // Our game has three states: the splash screen, gameplay, and the score display.
     states = {
@@ -156,6 +160,7 @@ function Fish() {
  * @param  {MouseEvent/TouchEvent} evt - the onpress event
  */
 function onpress(evt) {
+    splashscreen = true;
     switch (currentState) {
 
         case states.Splash: // Start the game and update the fish velocity.
@@ -169,27 +174,24 @@ function onpress(evt) {
 
         case states.Score: // Change from score to splash state if event within okButton bounding box
             // Get event position
-            var mouseX = evt.offsetX, mouseY = evt.offsetY, clickX = evt.keyCode;
+            //var mouseX = evt.offsetX, mouseY = evt.offsetY, clickX = evt.keyCode;
 
-            if (mouseX == null || mouseY == null) {
-                mouseX = evt.touches[0].clientX;
-                mouseY = evt.touches[0].clientY;
-            }
-            if (clickX ===55) {
-                clickX= evt.touches[0].clientX;
+            //if (mouseX == null || mouseY == null) {
+            //    mouseX = evt.touches[0].clientX;
+            //    mouseY = evt.touches[0].clientY;
+            //}
+            //if (clickX ===55) {
+            //    clickX= evt.touches[0].clientX;
+            //
+            //}
+            corals.reset();
+            currentState = states.Splash;
+            score = 0;
+            $("#myscore").html("Score: " + score);
 
-            }
-
-
-            // Check if within the okButton
-            if (okButton.x < mouseX && mouseX < okButton.x + okButton.width &&
-                okButton.y < mouseY && mouseY < okButton.y + okButton.height
-            ) {
-                corals.reset();
-                currentState = states.Splash;
-                score = 0;
-            }
             break;
+
+
     }
 }
 
@@ -204,7 +206,7 @@ function windowSetup() {
     // Set the width and height if we are on a display with a width > 500px (e.g., a desktop or tablet environment).
     var inputEvent = "touchstart";
     if (width >= 500) {
-        width = 550;
+        width = 500;
         height = 430;
         inputEvent = "keydown";
     }
@@ -218,7 +220,7 @@ function windowSetup() {
  */
 function canvasSetup() {
     canvas = document.createElement("canvas");
-    canvas.style.border = "8px solid blue";
+    canvas.style.border = "images/teethborder.png";
 
     canvas.width = width;
     canvas.height = height;
@@ -295,6 +297,7 @@ function update() {
     }
 
 
+
     fish.update();
 }
 
@@ -317,17 +320,26 @@ function render() {
     foregroundSprite.draw(renderingContext, foregroundPosition, height - foregroundSprite.height);
     foregroundSprite.draw(renderingContext, foregroundPosition + foregroundSprite.width, height - foregroundSprite.height);
 
-    //sharkSprite.draw(renderingContext, sharkPosition, height - 450);
-    //sharkSprite.draw(renderingContext, sharkPosition + 500,  height - 300);
-    //sharkSprite.draw(renderingContext, sharkPosition + 1000, height - 450);
-    //sharkSprite.draw(renderingContext, sharkPosition + 1500,  height - 200);
-    //sharkSprite.draw(renderingContext, sharkPosition + 2000, height - 450);
-    //sharkSprite.draw(renderingContext, sharkPosition + 2500,  height - 300);
-    //sharkSprite.draw(renderingContext, sharkPosition + 3000, height - 450);
-    //sharkSprite.draw(renderingContext, sharkPosition + 3500,  height - 200);
-    //sharkSprite.draw(renderingContext, sharkPosition + 4000, height - 450);
-    //sharkSprite.draw(renderingContext, sharkPosition + 4500,  height - 300);
+    if(!splashscreen){
+        splash();
+    }
+    if(currentState === states.Score){
+        gameOver();
+    }
 
+
+
+}
+function splash(){
+    textSprites.getReady.draw(renderingContext, 190, 170);
+    //okButtonSprite.draw(renderingContext, 200, 140);
+}
+function gameOver(){
+    textSprites.replay.draw(renderingContext, 70, 175);
+    textSprites.textspriteOver.draw(renderingContext, 153, 130);
+
+
+    //okButtonSprite.draw(renderingContext, 200, 140);
 }
 function CoralCollection() {
     this._corals = [];
@@ -350,8 +362,8 @@ function CoralCollection() {
      * Update the position of existing corals and add new corals when necessary.
      */
     this.update = function () {
-        //var randomShark = Math.floor(Math.random() * 100) + 100;
-        if (frames % 200 === 0) { // Add a new coral to the game every 100 frames.
+        //var randomShark = Math.floor(Math.random() * 80) + 100; I tried to use the random sharks, but it never ended up working.
+        if (frames % 115 === 0) { // Add a new coral to the game every 100 frames.
             this.add();
         }
 
@@ -360,6 +372,9 @@ function CoralCollection() {
 
             if (i === 0) { // If this is the leftmost coral, it is the only coral that the fish can collide with . . .
                 coral.detectCollision(); // . . . so, determine if the fish has collided with this leftmost coral.
+                if(fish.x - (coral.width + 2) === coral.x){
+                    ScoreUp();
+                }
             }
 
             coral.x -= 2; // Each frame, move each coral two pixels to the left. Higher/lower values change the movement speed.
@@ -381,6 +396,12 @@ function CoralCollection() {
         }
     };
 }
+function ScoreUp(){
+    score+=1;
+    document.getElementById("myscore").innerHTML = "Score: " + score + currentScore;
+
+}
+
 
 /**
  * The Coral class. Creates instances of Coral.
